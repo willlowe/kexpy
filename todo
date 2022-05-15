@@ -1,1 +1,1 @@
-I would like to not add any music when the service is bounced. I will set a flag called nowriteonstart
+smarter duplicate detecting, especially on restart. Currently if it has been down for < 1 hour, you will get many duplicates. There is a flag set but this should be smarter
