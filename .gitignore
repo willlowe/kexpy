@@ -1,0 +1,12 @@
+.DS_Store
+.cache
+.idea/.gitignore
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/kexpython.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+__pycache__/
+geckodriver.log
+test.py
