@@ -26,13 +26,13 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Publish
-        uses: nogsantos/scp-deploy@master
+        uses: appleboy/ssh-action@master
         with:
           port: 22
           host: 18.130.161.175
-          user: ubuntu
+          username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          args: |
+          script: |
             cd kexpy
             git pull origin master
             git status
