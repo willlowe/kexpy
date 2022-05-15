@@ -30,9 +30,9 @@ jobs:
         with:
           port: 22
           host: 18.130.161.175
-          username: ubuntu
+          user: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          script: |
+          args: |
             cd kexpy
             git pull origin master
             git status
