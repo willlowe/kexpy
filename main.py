@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 import spotifyutil
 from datetime import datetime
+import sys
 
 
 def get_recently_played():
@@ -37,6 +38,14 @@ def get_recently_played():
 def main():
     # I was quite tired when I wrote this bit. It basically checks if any new songs have been added
     previously_played = []
+
+    # Set flag to write on reboot or not. If the service gets bounced this will stop it from duplicating tracks
+    if "nowriteonstart" in sys.argv:
+        print('not writing on start')
+        do_write = False
+    else:
+        do_write = True
+
     while True:
         current = []
         recent = get_recently_played()
@@ -50,7 +59,10 @@ def main():
             print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + " " + item['track'] + ' - ' + item['artist'])
 
         for item in reversed(current):
-            spotifyutil.add_to_playlist([spotifyutil.find_track_id(track=item['track'], artist=item['artist'])])
+            if do_write == True:
+                spotifyutil.add_to_playlist([spotifyutil.find_track_id(track=item['track'], artist=item['artist'])])
+
+        do_write = True
 
         time.sleep(5)
 
