@@ -29,8 +29,8 @@ jobs:
         uses: nogsantos/scp-deploy@master
         with:
           src: ./*
-          host: ${{ 18.130.161.175 }}
-          remote: ${{ /home/ubuntu }}
-          port: ${{ 22 }}
-          user: ${{ ubuntu }}
+          host: 18.130.161.175
+          remote: /home/ubuntu/
+          port: 22
+          user: ubuntu
           key: ${{ secrets.SSH_KEY }}
