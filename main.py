@@ -39,12 +39,10 @@ def main():
     # I was quite tired when I wrote this bit. It basically checks if any new songs have been added
     previously_played = []
 
-    # Set flag to write on reboot or not. If the service gets bounced this will stop it from duplicating tracks
-    if "nowriteonstart" in sys.argv:
-        print('not writing on start')
-        do_write = False
+    if "showtracks" in sys.argv:
+        do_show_tracks = True
     else:
-        do_write = True
+        do_show_tracks = False
 
     while True:
         current = []
@@ -55,14 +53,13 @@ def main():
             else:
                 current.append(item)
         previously_played = recent
-        for item in reversed(current):
-            print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + " " + item['track'] + ' - ' + item['artist'])
+
+        if do_show_tracks:
+            for item in reversed(current):
+                print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + " " + item['track'] + ' - ' + item['artist'])
 
         for item in reversed(current):
-            if do_write == True:
-                spotifyutil.add_to_playlist([spotifyutil.find_track_id(track=item['track'], artist=item['artist'])])
-
-        do_write = True
+            spotifyutil.add_to_playlist([spotifyutil.find_track_id(track=item['track'], artist=item['artist'])])
 
         time.sleep(5)
 
