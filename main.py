@@ -15,6 +15,7 @@ def get_recently_played():
     options = Options()
     options.add_argument('--headless')
     driver = webdriver.Firefox(options=options)
+    print("getting kexp playlist and waiting")
     driver.get(kexp_url)
     time.sleep(1)
 
@@ -32,6 +33,8 @@ def get_recently_played():
         except AttributeError as e:
             pass
 
+    for item in recently_played:
+        print(item['track'])
     return recently_played
 
 
