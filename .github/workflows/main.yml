@@ -29,8 +29,10 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           port: 22
-          host: 18.130.161.175
+          host: 13.41.110.251
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            ls
+            cd kexpy
+            git pull origin master
+            git status
