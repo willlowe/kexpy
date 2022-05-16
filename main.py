@@ -54,11 +54,8 @@ def main():
                 current.append(item)
         previously_played = recent
 
-        if do_show_tracks:
-            for item in reversed(current):
-                print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + " " + item['track'] + ' - ' + item['artist'])
-
         for item in reversed(current):
+            print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + " " + item['track'] + ' - ' + item['artist'])
             spotifyutil.add_to_playlist([spotifyutil.find_track_id(track=item['track'], artist=item['artist'])])
 
         time.sleep(5)
